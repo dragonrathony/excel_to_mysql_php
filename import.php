@@ -18,38 +18,43 @@ if (isset($_POST["import"])) {
         $spreadSheet = $Reader->load($targetPath);
         $excelSheet = $spreadSheet->getActiveSheet();
         $spreadSheetAry = $excelSheet->toArray();
+        // print_r($spreadSheetAry); exit;
         $sheetCount = count($spreadSheetAry);
 
-        for ($i = 0; $i <= $sheetCount; $i++) {
-            $customer_username = "";
+        for ($i = 1; $i <= $sheetCount; $i++) {
+            $customer_note = "";
             if (isset($spreadSheetAry[$i][0])) {
-                $customer_username = $mysqli->real_escape_string($spreadSheetAry[$i][0]);
+                $customer_note = $mysqli->real_escape_string($spreadSheetAry[$i][0]);
             }
+            // echo 'customer_note === '.$customer_note."<br>";
+
+            $customer_username = "";
+            if (isset($spreadSheetAry[$i][1])) {
+                $customer_username = $mysqli->real_escape_string($spreadSheetAry[$i][1]);
+            }
+            // echo 'customer_username === '.$customer_username."<br>";
+
             $item_name = "";
-            if (isset($spreadSheetAry[$i][1])) {
-                $item_name = $mysqli->real_escape_string($spreadSheetAry[$i][1]);
+            if (isset($spreadSheetAry[$i][3])) {
+                $item_name = $mysqli->real_escape_string($spreadSheetAry[$i][3]);
             }
-            $quantity_status = "";
-            if (isset($spreadSheetAry[$i][1])) {
-                $quantity_status = $mysqli->real_escape_string($spreadSheetAry[$i][2]);
+            // echo 'item_name === '.$item_name."<br>";
+
+            $quantity = "";
+            if (isset($spreadSheetAry[$i][3])) {
+                $quantity = $mysqli->real_escape_string($spreadSheetAry[$i][4]);
             }
-            $category = "";
-            if (isset($spreadSheetAry[$i][1])) {
-                $category = $mysqli->real_escape_string($spreadSheetAry[$i][3]);
-            }
-            $comments = "";
-            if (isset($spreadSheetAry[$i][1])) {
-                $comments = $mysqli->real_escape_string($spreadSheetAry[$i][4]);
-            }
+            // echo 'quantity === '.$quantity."<br>";
+
+
 
             if (
                 !empty($customer_username) || !empty($item_name)
-                || !empty($quantity_status) || !empty($category)
-                || !empty($comments)
+                || !empty($quantity)
             ) {
-                $query = "INSERT INTO orders(customer_username, item_name, quantity_status, category, comments)
-           VALUES ('$customer_username', '$item_name', '$quantity_status', '$category', '$comments')";
-
+                $query = "INSERT INTO orders(customer_username, item_name, quantity, customer_note)
+                VALUES ('$customer_username', '$item_name', '$quantity', '$customer_note')";
+                //    echo 'query === '.$query; exit;
                 if ($mysqli->query($query) === TRUE) {
                     $type = "success";
                     $message = "Excel Data Imported into the Database";

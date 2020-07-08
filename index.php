@@ -82,16 +82,15 @@ require_once('./filter.php');
       </form>
 
       <!-- Filter result -->
-      <div class="table-responsive">
+      <div class="table-responsive filter-result-area">
         <label>Filter Result: </label>
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Customer username</th>
-              <th>Item name</th>
-              <th>Quantity status</th>
-              <th>Category</th>
-              <th>Comments</th>
+              <th>Customer Username</th>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Customer Note</th>
             </tr>
           </thead>
           <tbody>
@@ -106,9 +105,8 @@ require_once('./filter.php');
                 <tr>
                   <td><?php echo $row['customer_username']; ?></td>
                   <td><?php echo $row['item_name']; ?></td>
-                  <td><?php echo $row['quantity_status']; ?></td>
-                  <td><?php echo $row['category']; ?></td>
-                  <td><?php echo $row['comments']; ?></td>
+                  <td><?php echo $row['quantity']; ?></td>
+                  <td><?php echo $row['customer_note']; ?></td>
                 </tr>
             <?php
               }

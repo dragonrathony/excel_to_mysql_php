@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.5.5-10.4.11-MariaDB : Database - vnv
+MySQL - 5.5.5-10.3.15-MariaDB : Database - vnv
 *********************************************************************
 */
 
@@ -21,15 +21,13 @@ USE `vnv`;
 DROP TABLE IF EXISTS `orders`;
 
 CREATE TABLE `orders` (
-  `Customer username` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `Item name` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Quantity status` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Category` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Comments` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`Customer username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `orders` */
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_username` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `item_name` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `quantity` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_note` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1147 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

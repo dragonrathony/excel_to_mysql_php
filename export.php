@@ -2,10 +2,10 @@
 
 require_once('./db.php');
 
-$expo_query = "SELECT `customer_username`,`item_name`,`quantity_status`, `category`, `comments` FROM orders";
+$expo_query = "SELECT  `customer_note`, `customer_username`,`item_name`,`quantity` FROM orders";
 $result = $mysqli->query($expo_query);
 $columnHeader = '';
-$columnHeader = "Customer username" . "\t" . "Item name" . "\t" . "Quantity status" . "\t" . "Category" . "\t" . "Comments" . "\t";
+$columnHeader = "Customer Note" . "\t" . "Customer Username" . "\t" . "Item name" . "\t" . "Quantity" . "\t";
 
 $setData = '';
 while ($rec = mysqli_fetch_row($result)) {

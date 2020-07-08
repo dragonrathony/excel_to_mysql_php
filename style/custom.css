@@ -18,3 +18,7 @@
 div#response.display-block {
     display: block;
 }
+
+.filter-result-area {
+    height: 500px;
+}
